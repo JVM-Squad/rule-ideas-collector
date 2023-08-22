@@ -1,0 +1,18 @@
+version: '3.1' #format version for this docker compose file
+services:
+  mongo-container:
+    image: mongo:latest
+    environment:
+       MONGO_INITDB_ROOT_USERNAME: admin
+       MONGO_INITDB_ROOT_PASSWORD: password
+       MONGO_INITDB_DATABASE: rule_ideas_collector_test
+    volumes:
+      - mongodbdata:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - "27017:27017"
+    command: mongod
+
+volumes:
+  mongodbdata:
+    driver: local
