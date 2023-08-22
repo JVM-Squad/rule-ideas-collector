@@ -9,5 +9,4 @@ public class RuleIdeasCollectorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RuleIdeasCollectorApplication.class, args);
 	}
-
 }
