@@ -1,98 +1,31 @@
 package org.sonar.jvm.squad.ruleideascollector.model;
 
+import java.time.LocalDateTime;
 import java.util.Set;
+import lombok.Builder;
+import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
+@Builder
 @Document
-public class Rule extends BaseEntity {
+// TODO: inherit from BaseEntity
+public class Rule {
 
+  @Id
+  public String id;
+  @CreatedDate
+  public LocalDateTime creationTimestamp;
+  @CreatedDate
+  public LocalDateTime modifiedTimestamp;
   private User creator;
-
-  public User getCreator() {
-    return creator;
-  }
-
-  public void setCreator(User creator) {
-    this.creator = creator;
-  }
-
-  private String ruleId;
-
-  public String getRuleId() {
-    return ruleId;
-  }
-
-  public void setRuleId(String ruleId) {
-    this.ruleId = ruleId;
-  }
-
   private String title;
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  private Set<String> languages;
-
-  public Set<String> getLanguages() {
-    return languages;
-  }
-
-  public void setLanguages(Set<String> languages) {
-    this.languages = languages;
-  }
-
-  private String[] tags;
-
-  public String[] getTags() {
-    return tags;
-  }
-
-  public void setTags(String[] tags) {
-    this.tags = tags;
-  }
-
-  private Status status;
-
-  public Status getStatus() {
-    return status;
-  }
-
-  public void setStatus(Status status) {
-    this.status = status;
-  }
-
-  private Boolean isSonarWay;
-
-  public Boolean getSonarWay() {
-    return isSonarWay;
-  }
-
-  public void setSonarWay(Boolean sonarWay) {
-    isSonarWay = sonarWay;
-  }
-
   private String description;
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
+  private Set<String> languages;
+  private String[] tags;
+  private Status status;
+  private Boolean isSonarWay;
   private Comment[] comments;
-
-  public Comment[] getComments() {
-    return comments;
-  }
-
-  public void setComments(Comment[] comments) {
-    this.comments = comments;
-  }
 }
