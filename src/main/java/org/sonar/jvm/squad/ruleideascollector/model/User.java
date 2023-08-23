@@ -1,21 +1,15 @@
 package org.sonar.jvm.squad.ruleideascollector.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "users")
-public class User extends BaseEntity {
+@Data
+@Builder
+@Document
+public class User {
 
-  @Column(name = "name")
   private String name;
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String value) {
-    name = value;
-  }
 }

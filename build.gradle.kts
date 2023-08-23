@@ -16,11 +16,16 @@ repositories {
 }
 
 dependencies {
-	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+	compileOnly("org.projectlombok:lombok:1.18.26")
+	annotationProcessor("org.projectlombok:lombok:1.18.26")
+
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.testcontainers:mongodb:1.19.0")
+	testImplementation("org.testcontainers:junit-jupiter")
 }
 
 tasks.withType<Test> {
