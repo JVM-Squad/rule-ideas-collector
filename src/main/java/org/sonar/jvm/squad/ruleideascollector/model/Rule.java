@@ -1,15 +1,11 @@
 package org.sonar.jvm.squad.ruleideascollector.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import java.util.Set;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "rules")
+@Document
 public class Rule extends BaseEntity {
 
-  @Column(name = "creator")
   private User creator;
 
   public User getCreator() {
@@ -20,7 +16,6 @@ public class Rule extends BaseEntity {
     this.creator = creator;
   }
 
-  @Column(name = "rule_id")
   private String ruleId;
 
   public String getRuleId() {
@@ -31,7 +26,6 @@ public class Rule extends BaseEntity {
     this.ruleId = ruleId;
   }
 
-  @Column(name = "title")
   private String title;
 
   public String getTitle() {
@@ -42,7 +36,6 @@ public class Rule extends BaseEntity {
     this.title = title;
   }
 
-  @Column(name = "languages")
   private Set<String> languages;
 
   public Set<String> getLanguages() {
@@ -53,7 +46,6 @@ public class Rule extends BaseEntity {
     this.languages = languages;
   }
 
-  @Column(name = "tags")
   private String[] tags;
 
   public String[] getTags() {
@@ -64,7 +56,6 @@ public class Rule extends BaseEntity {
     this.tags = tags;
   }
 
-  @Column(name = "status")
   private Status status;
 
   public Status getStatus() {
@@ -75,7 +66,6 @@ public class Rule extends BaseEntity {
     this.status = status;
   }
 
-  @Column(name = "is_sonar_way")
   private Boolean isSonarWay;
 
   public Boolean getSonarWay() {
@@ -86,7 +76,6 @@ public class Rule extends BaseEntity {
     isSonarWay = sonarWay;
   }
 
-  @Column(name = "description")
   private String description;
 
   public String getDescription() {
@@ -97,9 +86,7 @@ public class Rule extends BaseEntity {
     this.description = description;
   }
 
-  @Column(name = "comments")
   private Comment[] comments;
-
 
   public Comment[] getComments() {
     return comments;

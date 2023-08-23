@@ -1,14 +1,10 @@
 package org.sonar.jvm.squad.ruleideascollector.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "users")
+@Document
 public class Comment extends BaseEntity {
 
-  @Column(name = "creator")
   private User creator;
 
   public User getCreator() {
@@ -19,7 +15,6 @@ public class Comment extends BaseEntity {
     this.creator = creator;
   }
 
-  @Column(name = "text")
   private String text;
 
   public String getText() {

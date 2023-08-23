@@ -1,17 +1,12 @@
 package org.sonar.jvm.squad.ruleideascollector.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
-import java.io.Serializable;
+import java.time.LocalDateTime;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
 
-@MappedSuperclass
-public class BaseEntity implements Serializable {
+public class BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public String id;
 
   public String getId() {
@@ -22,25 +17,25 @@ public class BaseEntity implements Serializable {
     this.id = id;
   }
 
-  @Column(name = "creation_timestamp")
-  public long creationTimestamp;
+  @CreatedDate
+  public LocalDateTime creationTimestamp;
 
-  public long getCreationTimestamp() {
+  public LocalDateTime getCreationTimestamp() {
     return creationTimestamp;
   }
 
-  public void setCreationTimestamp(long value) {
+  public void setCreationTimestamp(LocalDateTime value) {
     creationTimestamp = value;
   }
 
-  @Column(name = "modified_timestamp")
-  public long modifiedTimestamp;
+  @CreatedDate
+  public LocalDateTime modifiedTimestamp;
 
-  public long getModifiedTimestamp() {
+  public LocalDateTime getModifiedTimestamp() {
     return modifiedTimestamp;
   }
 
-  public void setModifiedTimestamp(long value) {
+  public void setModifiedTimestamp(LocalDateTime value) {
     modifiedTimestamp = value;
   }
 }

@@ -1,14 +1,10 @@
 package org.sonar.jvm.squad.ruleideascollector.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "users")
+@Document
 public class User extends BaseEntity {
 
-  @Column(name = "name")
   private String name;
 
   public String getName() {
