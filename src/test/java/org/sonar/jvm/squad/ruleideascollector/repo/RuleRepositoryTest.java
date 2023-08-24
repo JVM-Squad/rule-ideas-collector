@@ -16,27 +16,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.sonar.jvm.squad.ruleideascollector.TestUtils.RULE_1;
+import static org.sonar.jvm.squad.ruleideascollector.TestUtils.RULE_2;
 
 @SpringBootTest
 @Testcontainers
 class RuleRepositoryTest extends ContainerBase {
-
-  private static final Rule RULE_1 = Rule.builder()
-    .id("rule_id_1")
-    .title("Rule S1")
-    .creator(User.builder().name("User_1").build())
-    .status(Status.PROPOSAL)
-    .build();
-
-  private static final Rule RULE_2 = Rule.builder()
-    .id("rule_id_2")
-    .title("Rule S2")
-    .creator(User.builder().name("User_1").build())
-    .languages(Set.of("Java"))
-    .tags(new String[]{ "obsolete", "spring" })
-    .isSonarWay(true)
-    .status(Status.ACCEPTED)
-    .build();
 
   @Autowired
   RuleRepository ruleRepository;

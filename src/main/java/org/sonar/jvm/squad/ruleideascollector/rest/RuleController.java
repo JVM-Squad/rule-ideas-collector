@@ -22,6 +22,8 @@ public class RuleController {
     this.repository = repository;
   }
 
+  //TODO: refactor to use DTO and a Service
+
   @GetMapping("/rules")
   // TODO: implement actual paging. Parameters (offst, size) can be renamed.
   public List<Rule> findAllRules(
@@ -63,7 +65,7 @@ public class RuleController {
     @RequestBody Rule rule,
     HttpServletResponse response
   ) {
-    if (!rule.id.equals("NULL")) {
+    if (rule.id == null) {
       response.setStatus( HttpServletResponse.SC_BAD_REQUEST);
       return null;
     } else {
