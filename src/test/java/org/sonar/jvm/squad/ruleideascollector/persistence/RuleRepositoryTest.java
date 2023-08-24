@@ -1,16 +1,12 @@
-package org.sonar.jvm.squad.ruleideascollector.repo;
+package org.sonar.jvm.squad.ruleideascollector.persistence;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.sonar.jvm.squad.ruleideascollector.model.Rule;
-import org.sonar.jvm.squad.ruleideascollector.model.Status;
-import org.sonar.jvm.squad.ruleideascollector.model.User;
+import org.sonar.jvm.squad.ruleideascollector.persistence.model.Rule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;

@@ -1,4 +1,4 @@
-package org.sonar.jvm.squad.ruleideascollector.repo;
+package org.sonar.jvm.squad.ruleideascollector.persistence;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;

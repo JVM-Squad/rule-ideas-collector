@@ -1,19 +1,17 @@
-package org.sonar.jvm.squad.ruleideascollector.model;
+package org.sonar.jvm.squad.ruleideascollector.persistence.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Builder
+@AllArgsConstructor
 @Document
-// TODO: inherit from BaseEntity
 public class Comment {
   @Id
-  public String id;
+  private String id;
   private User creator;
   private String text;
 }

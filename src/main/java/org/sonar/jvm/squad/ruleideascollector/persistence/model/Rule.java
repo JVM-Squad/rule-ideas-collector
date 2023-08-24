@@ -1,4 +1,4 @@
-package org.sonar.jvm.squad.ruleideascollector.model;
+package org.sonar.jvm.squad.ruleideascollector.persistence.model;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -11,15 +11,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Builder
 @Document
-// TODO: inherit from BaseEntity
 public class Rule {
 
   @Id
-  public String id;
+  private String id;
   @CreatedDate
-  public LocalDateTime creationTimestamp;
+  private LocalDateTime creationTimestamp;
   @CreatedDate
-  public LocalDateTime modifiedTimestamp;
+  private LocalDateTime modifiedTimestamp;
   private User creator;
   private String title;
   private String description;
