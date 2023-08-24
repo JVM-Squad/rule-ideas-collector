@@ -11,4 +11,7 @@ db.createUser(
     }
 );
 
-db.createCollection("test"); //MongoDB creates the database when you first store data in that database
+conn = new Mongo();
+db = conn.getDB("rule_ideas_collector_test");
+
+// TODO populate the DB!

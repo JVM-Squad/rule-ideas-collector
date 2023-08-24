@@ -1,18 +1,36 @@
 version: '3.1' #format version for this docker compose file
 services:
-  mongo-container:
+
+  mongo:
     image: mongo:latest
     environment:
        MONGO_INITDB_ROOT_USERNAME: admin
        MONGO_INITDB_ROOT_PASSWORD: password
        MONGO_INITDB_DATABASE: rule_ideas_collector_test
     volumes:
-      - mongodbdata:/data/db
+#      - mongodbdata:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     ports:
       - "27017:27017"
     command: mongod
 
-volumes:
-  mongodbdata:
-    driver: local
+  mongo-express:
+    image: mongo-express:latest
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=admin
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=password
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+
+#volumes:
+#  mongodbdata:
+#    driver: local
+
+# TODO: consider if enabling volumes or not!
