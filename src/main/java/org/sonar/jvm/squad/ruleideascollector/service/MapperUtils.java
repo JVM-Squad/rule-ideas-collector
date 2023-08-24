@@ -41,7 +41,11 @@ public class MapperUtils {
   }
 
   public static UserDTO fromModel(User user) {
-    return new UserDTO(user.getId(), user.getName());
+    if (user != null) {
+      return new UserDTO(user.getId(), user.getName());
+    } else {
+      return null;
+    }
   }
 
   public static Rule fromDTO(RuleDTO ruleDTO) {
@@ -71,6 +75,10 @@ public class MapperUtils {
   }
 
   public static User fromDTO(UserDTO userDTO) {
-    return new User(userDTO.getId(), userDTO.getName());
+    if (userDTO != null) {
+      return new User(userDTO.getId(), userDTO.getName());
+    } else {
+      return null;
+    }
   }
 }
