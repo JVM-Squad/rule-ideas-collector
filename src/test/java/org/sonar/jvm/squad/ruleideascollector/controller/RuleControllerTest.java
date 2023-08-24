@@ -109,8 +109,7 @@ class RuleControllerTest {
     String requestBody = objectMapper.writeValueAsString(RULE_DTO_1);
 
     mockMvc.perform(put("/rules").contentType("application/json").content(requestBody))
-      .andExpect(status().isOk()K)
-      .andDo(print());
+      .andExpect(status().isOk());
   }
 
   @Test
