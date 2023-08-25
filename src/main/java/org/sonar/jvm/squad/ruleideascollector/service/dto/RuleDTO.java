@@ -1,21 +1,21 @@
 package org.sonar.jvm.squad.ruleideascollector.service.dto;
 
-import java.time.LocalDateTime;
 import lombok.Builder;
-import lombok.Value;
 
-@Value
+import java.time.LocalDateTime;
+
 @Builder
-public class RuleDTO {
+public record RuleDTO(
 
-   String id;
+        String id,
 
-   RuleOverviewDTO ruleOverviewDTO;
+        RuleOverviewDTO ruleOverviewDTO,
 
-   UserDTO creator;
-   LocalDateTime creationTimestamp;
-   LocalDateTime modifiedTimestamp;
+        UserDTO creator,
+        LocalDateTime creationTimestamp,
+        LocalDateTime modifiedTimestamp,
 
-   String description;
-   CommentDTO[] comments;
+        String description,
+        CommentDTO[] comments
+) {
 }

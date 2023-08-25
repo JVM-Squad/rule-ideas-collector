@@ -50,17 +50,17 @@ public class MapperUtils {
 
   public static Rule fromDTO(RuleDTO ruleDTO) {
     return Rule.builder()
-      .id(ruleDTO.getId())
-      .title(ruleDTO.getRuleOverviewDTO().getTitle())
-      .tags(ruleDTO.getRuleOverviewDTO().getTags())
-      .languages(ruleDTO.getRuleOverviewDTO().getLanguages())
-      .isSonarWay(ruleDTO.getRuleOverviewDTO().getIsSonarWay())
-      .status(ruleDTO.getRuleOverviewDTO().getStatus())
-      .creator(fromDTO(ruleDTO.getCreator()))
-      .creationTimestamp(ruleDTO.getCreationTimestamp())
-      .modifiedTimestamp(ruleDTO.getModifiedTimestamp())
-      .description(ruleDTO.getDescription())
-      .comments(fromDTO(ruleDTO.getComments()))
+      .id(ruleDTO.id())
+      .title(ruleDTO.ruleOverviewDTO().title())
+      .tags(ruleDTO.ruleOverviewDTO().tags())
+      .languages(ruleDTO.ruleOverviewDTO().languages())
+      .isSonarWay(ruleDTO.ruleOverviewDTO().isSonarWay())
+      .status(ruleDTO.ruleOverviewDTO().status())
+      .creator(fromDTO(ruleDTO.creator()))
+      .creationTimestamp(ruleDTO.creationTimestamp())
+      .modifiedTimestamp(ruleDTO.modifiedTimestamp())
+      .description(ruleDTO.description())
+      .comments(fromDTO(ruleDTO.comments()))
       .build();
   }
 

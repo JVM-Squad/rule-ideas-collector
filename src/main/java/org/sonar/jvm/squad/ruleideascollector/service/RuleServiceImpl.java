@@ -24,7 +24,7 @@ public class RuleServiceImpl implements RuleService {
   @Override
   public List<RuleOverviewDTO> getRuleOverviews() {
     return getRulesAsStream()
-      .map(RuleDTO::getRuleOverviewDTO)
+      .map(RuleDTO::ruleOverviewDTO)
       .toList();
   }
 
@@ -42,7 +42,7 @@ public class RuleServiceImpl implements RuleService {
 
   @Override
   public boolean modifyRule(RuleDTO ruleDTO) {
-    if(ruleRepository.existsById(ruleDTO.getId())) {
+    if(ruleRepository.existsById(ruleDTO.id())) {
       ruleRepository.save(MapperUtils.fromDTO(ruleDTO));
       return true;
     }
