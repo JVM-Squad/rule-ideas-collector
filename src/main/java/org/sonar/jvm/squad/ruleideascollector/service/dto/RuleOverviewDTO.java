@@ -1,19 +1,19 @@
 package org.sonar.jvm.squad.ruleideascollector.service.dto;
 
 import java.util.Set;
+
 import lombok.Builder;
-import lombok.Value;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.Status;
 
-@Value
 @Builder
-public class RuleOverviewDTO {
+public record RuleOverviewDTO(
 
-   String title;
+        String title,
 
-   Set<String> languages;
-   String[] tags;
-   Boolean isSonarWay;
+        Set<String> languages,
+        String[] tags,
+        Boolean isSonarWay,
 
-   Status status;
+        Status status
+) {
 }
