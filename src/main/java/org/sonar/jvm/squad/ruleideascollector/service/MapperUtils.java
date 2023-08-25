@@ -71,12 +71,12 @@ public class MapperUtils {
   }
 
   public static Comment fromDTO(CommentDTO commentDTO) {
-    return new Comment(commentDTO.getId(), fromDTO(commentDTO.getCreator()), commentDTO.getText());
+    return new Comment(commentDTO.id(), fromDTO(commentDTO.creator()), commentDTO.text());
   }
 
   public static User fromDTO(UserDTO userDTO) {
     if (userDTO != null) {
-      return new User(userDTO.getId(), userDTO.getName());
+      return new User(userDTO.id(), userDTO.name());
     } else {
       return null;
     }

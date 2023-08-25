@@ -52,7 +52,7 @@ class RuleControllerTest {
   @Test
   @DisplayName("get /rules returns all rules available in the Rule Service")
   void test_getRuleOverviews() throws Exception {
-    var ruleOverviewDTOs = List.of(RULE_DTO_1.getRuleOverviewDTO(), RULE_DTO_2.getRuleOverviewDTO());
+    var ruleOverviewDTOs = List.of(RULE_DTO_1.ruleOverviewDTO(), RULE_DTO_2.ruleOverviewDTO());
     Mockito.when(ruleService.getRuleOverviews()).thenReturn(ruleOverviewDTOs);
 
     var result = mockMvc.perform(get("/rules/overviews").contentType("application/json"))
@@ -67,9 +67,9 @@ class RuleControllerTest {
   @Test
   @DisplayName("get /rules/{id} returns the rule with id {id} available in the Rule Service")
   void test_getRule() throws Exception {
-    Mockito.when(ruleService.getRule(RULE_DTO_2.getId())).thenReturn(Optional.of(RULE_DTO_2));
+    Mockito.when(ruleService.getRule(RULE_DTO_2.id())).thenReturn(Optional.of(RULE_DTO_2));
 
-    var getRuleUrl = "/rules/"+RULE_DTO_2.getId();
+    var getRuleUrl = "/rules/"+RULE_DTO_2.id();
     var result = mockMvc.perform(get(getRuleUrl).contentType("application/json"))
       .andExpect(status().isOk())
       .andDo(print())
@@ -82,7 +82,7 @@ class RuleControllerTest {
   @Test
   @DisplayName("post /rules saves a valid rule the Rule Service")
   void test_createNewRuleSuccess() throws Exception {
-    Mockito.when(ruleService.createRule(RULE_DTO_1)).thenReturn(RULE_DTO_1.getId());
+    Mockito.when(ruleService.createRule(RULE_DTO_1)).thenReturn(RULE_DTO_1.id());
 
     String requestBody = objectMapper.writeValueAsString(RULE_DTO_1);
 

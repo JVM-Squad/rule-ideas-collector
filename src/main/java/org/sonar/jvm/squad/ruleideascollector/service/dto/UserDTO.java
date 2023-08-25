@@ -1,11 +1,8 @@
 package org.sonar.jvm.squad.ruleideascollector.service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Value;
+public record UserDTO (
+   String id,
+   String name
+) {
 
-@Value
-@AllArgsConstructor
-public class UserDTO {
-   String id;
-   String name;
 }
