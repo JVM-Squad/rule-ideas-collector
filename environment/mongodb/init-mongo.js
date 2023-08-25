@@ -1,3 +1,4 @@
+db = db.getSiblingDB('rule_ideas_collector_test')
 db.createUser(
     {
         user: "admin",
@@ -11,7 +12,6 @@ db.createUser(
     }
 );
 
-conn = new Mongo();
-db = conn.getDB("rule_ideas_collector_test");
+// DB is created only when it is populated, so we add a test collection (for now)
+db.createCollection('test')
 
-// TODO populate the DB!
