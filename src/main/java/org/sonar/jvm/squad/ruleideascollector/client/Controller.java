@@ -3,6 +3,13 @@ package org.sonar.jvm.squad.ruleideascollector.client;
 import org.sonar.jvm.squad.ruleideascollector.service.RuleService;
 import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleDTO;
 import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleOverviewDTO;
+import org.sonar.jvm.squad.ruleideascollector.service.dto.UserDTO;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -29,12 +38,44 @@ public class Controller {
     ) {
         RestTemplate rt = new RestTemplate();
         model.addAttribute("rules", rt.getForEntity("http://localhost:8080/rules", RuleDTO[].class).getBody());
+
+        ParameterizedTypeReference<RestResponsePage<UserDTO>> responseType = new ParameterizedTypeReference<>() { };
+        ResponseEntity<RestResponsePage<UserDTO>> result = rt.exchange("http://localhost:8080/users", HttpMethod.GET, null, responseType);
+        List<UserDTO> searchResult = result.getBody().getContent();
+        model.addAttribute("users", searchResult);
+
+
+        //model.addAttribute("users", rt.getForEntity("http://localhost:8080/users", UserDTO[].class).getBody());
+
         if (ruleId != null) {
             model.addAttribute("selectedRule",
                     rt.getForEntity("http://localhost:8080/rules/" + ruleId, RuleDTO.class).getBody());
         }
-        //model.addAttribute("rules", ruleService.getRules());
+
         return "index";
+    }
+
+    public static class RestResponsePage<T> extends PageImpl<T>{
+
+        private static final long serialVersionUID = 3248189030448292002L;
+
+        public RestResponsePage(List<T> content, Pageable pageable, long total) {
+            super(content, pageable, total);
+            // TODO Auto-generated constructor stub
+        }
+
+        public RestResponsePage(List<T> content) {
+            super(content);
+            // TODO Auto-generated constructor stub
+        }
+
+        /* PageImpl does not have an empty constructor and this was causing an issue for RestTemplate to cast the Rest API response
+         * back to Page.
+         */
+        public RestResponsePage() {
+            super(new ArrayList<T>());
+        }
+
     }
 
     @PostMapping("/")

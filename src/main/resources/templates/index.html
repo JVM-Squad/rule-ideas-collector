@@ -4,25 +4,49 @@
     <div class="rule-list-container" style="float: left; width: 50%; height: 100%; background-color: #0057b7">
         <div class="menu-container">
             <div style="float: right; padding: .5em">
-                <a href="/" style="border-radius: 50%"><button>+</button></a>
+                <a href="/" style="border-radius: 50%">
+                    <button>+</button>
+                </a>
             </div>
         </div>
         <div th:switch="${rules}">
             <ul>
                 <li th:each="rule : ${rules}">
-                    <a style="color: wheat" th:href="@{http://localhost:8080(ruleId=${rule.id()})}" th:text="${rule.ruleOverviewDTO().title()}"></a>
+                    <a style="color: wheat" th:href="@{http://localhost:8080(ruleId=${rule.id()})}"
+                       th:text="${rule.ruleOverviewDTO().title()}"></a>
                 </li>
             </ul>
         </div>
     </div>
-    <div class="editor-container" style="float: right; width: 50%; height: 100%; background-color: #ffdd00;" th:switch="${selectedRule}">
+    <div class="editor-container" style="float: right; width: 50%; height: 100%; background-color: #ffdd00;"
+         th:switch="${selectedRule}">
         <div style="padding: 2em">
-        <form method="post">
-            <input name="id" type="hidden" th:value='${selectedRule != null ? selectedRule.id() : ""}'>
-            Title <input name="title" type="text" th:value='${selectedRule != null ? selectedRule.ruleOverviewDTO().title() : ""}'><br />
-            Description <textarea name="description" cols="60" rows="15" th:text='${selectedRule != null ? selectedRule.description() : ""}'></textarea>
-            <input type="submit" th:value='${selectedRule != null ? "Save changes" : "Create new rule"}'>
-        </form>
+            <form method="post">
+                <table>
+                    <input name="id" type="hidden" th:value='${selectedRule != null ? selectedRule.id() : ""}'>
+                    <tr>
+                        <td>Title</td>
+                        <td><input name="title" type="text"
+                                   th:value='${selectedRule != null ? selectedRule.ruleOverviewDTO().title() : ""}'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td><textarea name="description" cols="60" rows="15"
+                                      th:text='${selectedRule != null ? selectedRule.description() : ""}'></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Author</td>
+                        <td>
+                            <select name="user" th:switch="${users}">
+                                <option th:each="user : ${users}" th:value="${user.name}" th:text='${user.name + " (" + user.id + ")"}'></option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" th:value='${selectedRule != null ? "Save changes" : "Create new rule"}'>
+            </form>
         </div>
     </div>
 </div>
