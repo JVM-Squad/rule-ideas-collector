@@ -1,6 +1,7 @@
 package org.sonar.jvm.squad.ruleideascollector;
 
 import java.util.Set;
+import org.sonar.jvm.squad.ruleideascollector.persistence.model.Comment;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.Rule;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.Status;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.User;
@@ -31,6 +32,7 @@ public class TestUtils {
     .tags(new String[]{ "obsolete", "spring" })
     .isSonarWay(true)
     .status(Status.ACCEPTED)
+    .comments(new Comment[]{ new Comment("comment_1", USER_1, "comment") })
     .build();
 
   public static final UserDTO USER_DTO_1 = MapperUtils.fromModel(USER_1);

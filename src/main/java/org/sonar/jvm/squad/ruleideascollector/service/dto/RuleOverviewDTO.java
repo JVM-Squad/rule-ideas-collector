@@ -3,15 +3,11 @@ package org.sonar.jvm.squad.ruleideascollector.service.dto;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
-
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.Status;
 
 @Builder
 public record RuleOverviewDTO(
-
         String title,
 
         Set<String> languages,
@@ -36,5 +32,16 @@ public record RuleOverviewDTO(
     int result = Objects.hash(title, languages, isSonarWay, status);
     result = 31 * result + Arrays.hashCode(tags);
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "RuleOverviewDTO{" +
+      "title='" + title + '\'' +
+      ", languages=" + languages +
+      ", tags=" + Arrays.toString(tags) +
+      ", isSonarWay=" + isSonarWay +
+      ", status=" + status +
+      '}';
   }
 }

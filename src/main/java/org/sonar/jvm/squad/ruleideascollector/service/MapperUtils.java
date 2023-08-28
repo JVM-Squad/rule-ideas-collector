@@ -32,7 +32,7 @@ public class MapperUtils {
   }
 
   public static CommentDTO[] fromModel(Comment[] comments) {
-    if (comments == null) return null;
+    if (comments == null) return new CommentDTO[0];
     return Arrays.stream(comments).map(MapperUtils::fromModel).toArray(CommentDTO[]::new);
   }
 
@@ -65,7 +65,7 @@ public class MapperUtils {
   }
 
   public static Comment[] fromDTO(CommentDTO[] commentDTOs) {
-    if (commentDTOs == null) return null;
+    if (commentDTOs == null) return new Comment[0];
 
     return Arrays.stream(commentDTOs).map(MapperUtils::fromDTO).toArray(Comment[]::new);
   }
