@@ -38,11 +38,12 @@ public class Controller {
     ) {
         RestTemplate rt = new RestTemplate();
         model.addAttribute("rules", rt.getForEntity("http://localhost:8080/rules", RuleDTO[].class).getBody());
+        model.addAttribute("users", rt.getForEntity("http://localhost:8080/users", UserResponseDTO.class).getBody()._embedded().users());
 
-        ParameterizedTypeReference<RestResponsePage<UserDTO>> responseType = new ParameterizedTypeReference<>() { };
+        /*ParameterizedTypeReference<RestResponsePage<UserDTO>> responseType = new ParameterizedTypeReference<>() { };
         ResponseEntity<RestResponsePage<UserDTO>> result = rt.exchange("http://localhost:8080/users", HttpMethod.GET, null, responseType);
         List<UserDTO> searchResult = result.getBody().getContent();
-        model.addAttribute("users", searchResult);
+        model.addAttribute("users", searchResult);*/
 
 
         //model.addAttribute("users", rt.getForEntity("http://localhost:8080/users", UserDTO[].class).getBody());
