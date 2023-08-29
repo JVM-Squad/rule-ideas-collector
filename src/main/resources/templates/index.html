@@ -40,7 +40,13 @@
                         <td>Author</td>
                         <td>
                             <select name="user" th:switch="${users}">
-                                <option th:each="user : ${users}" th:value="${user.name}" th:text='${user.name + " (" + user.id + ")"}'></option>
+                                <option hidden="hidden" th:selected='${selectedRule == null || selectedRule.creator() == null ? "selected" : "false"}' value=""></option>
+                                <option
+                                        th:each="user : ${users}"
+                                        th:value="${user.id()}"
+                                        th:selected='${selectedRule != null && selectedRule.creator() != null && selectedRule.creator().id().equals(user.id()) ? "selected" : "false"}'
+                                        th:text='${user.name + " (" + user.id + ")"}'>
+                                </option>
                             </select>
                         </td>
                     </tr>

@@ -1,5 +1,7 @@
 package org.sonar.jvm.squad.ruleideascollector.client;
 
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import org.sonar.jvm.squad.ruleideascollector.service.RuleService;
 import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleDTO;
 import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleOverviewDTO;
@@ -84,18 +86,25 @@ public class Controller {
             @RequestParam String title,
             @RequestParam String description,
             @RequestParam(required = false) String id,
-            Model model
-    ) {
+            @RequestParam("user") String userId,
+            Model model,
+            HttpServletResponse response
+    ) throws IOException {
+        /*if (userId.isBlank()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Authoring user is a required field.");
+            return null;
+        }*/
+
         RestTemplate rt = new RestTemplate();
         if (id != null && id.isBlank()) id = null;
-        RuleDTO ruleDTO = new RuleDTO(id, new RuleOverviewDTO(title, null, null, null, null), null, null, LocalDateTime.now(), description, null);
+        UserDTO user = rt.getForEntity("http://localhost:8080/users/" + userId, UserDTO.class).getBody();
+        RuleDTO ruleDTO = new RuleDTO(id, new RuleOverviewDTO(title, null, null, null, null), user, null, LocalDateTime.now(), description, null);
         String url = "http://localhost:8080/rules";
         if (id == null) {
             id = rt.postForEntity(url, ruleDTO, String.class).getBody();
         } else {
             rt.put(url, ruleDTO, RuleDTO.class);
         }
-
 
         return new RedirectView("http://localhost:8080?ruleId=" + id);
     }
