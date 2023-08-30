@@ -65,6 +65,16 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>Languages</td>
+                            <td><input name="languages" type="text" th:value='${selectedRule != null ? #strings.listJoin(selectedRule.ruleOverviewDTO().languages(), ",") : ""}'>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tags</td>
+                            <td><input name="tags" type="text" th:value='${selectedRule != null ?  #strings.listJoin(selectedRule.ruleOverviewDTO().tags(), ",") : ""}'>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Author</td>
                             <td>
                                 <select name="user" th:switch="${users}">
