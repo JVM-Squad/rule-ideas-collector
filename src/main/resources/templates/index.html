@@ -1,61 +1,87 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Rule Ideas Collector</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
 <body>
-<div class="content" style="content: ''; display: table; clear: both; width: 100%; height: 100%">
-    <div class="rule-list-container" style="float: left; width: 50%; height: 100%; background-color: #0057b7">
-        <div class="menu-container">
-            <div style="float: right; padding: .5em">
-                <a href="/" style="border-radius: 50%">
-                    <button>+</button>
-                </a>
+    <div class="root">
+        <div class="header">
+            <div class="container">
+                Rule Ideas Collector 0.9 beta
             </div>
         </div>
-        <div th:switch="${rules}">
-            <ul>
-                <li th:each="rule : ${rules}">
-                    <a style="color: wheat" th:href="@{http://localhost:8080(ruleId=${rule.id()})}"
-                       th:text="${rule.ruleOverviewDTO().title()}"></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="editor-container" style="float: right; width: 50%; height: 100%; background-color: #ffdd00;"
-         th:switch="${selectedRule}">
-        <div style="padding: 2em">
-            <form method="post">
-                <table>
-                    <input name="id" type="hidden" th:value='${selectedRule != null ? selectedRule.id() : ""}'>
-                    <tr>
-                        <td>Title</td>
-                        <td><input name="title" type="text"
-                                   th:value='${selectedRule != null ? selectedRule.ruleOverviewDTO().title() : ""}'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td><textarea name="description" cols="60" rows="15"
-                                      th:text='${selectedRule != null ? selectedRule.description() : ""}'></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Author</td>
-                        <td>
-                            <select name="user" th:switch="${users}">
-                                <option hidden="hidden" th:selected='${selectedRule == null || selectedRule.creator() == null ? "selected" : "false"}' value=""></option>
-                                <option
-                                        th:each="user : ${users}"
-                                        th:value="${user.id()}"
-                                        th:selected='${selectedRule != null && selectedRule.creator() != null && selectedRule.creator().id().equals(user.id()) ? "selected" : "false"}'
-                                        th:text='${user.name + " (" + user.id + ")"}'>
-                                </option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-                <input type="submit" th:value='${selectedRule != null ? "Save changes" : "Create new rule"}'>
-            </form>
-        </div>
-    </div>
-</div>
+        <div class="content">
+            <div class="container flex-column">
+                <div class="toolbar">
+                    <div class="toolbutton" onclick='document.location.href="/"'>
+                        Create New Rule
+                    </div>
+                </div>
 
+                <div class="table">
+                    <table>
+                        <tr>
+                            <th class="title">Title</th>
+                            <th class="status">Status</th>
+                        </tr>
+                        <tr th:each="rule : ${rules}">
+                            <td>
+                            <a th:href="@{http://localhost:8080(ruleId=${rule.id()})}"
+                               th:text="${rule.ruleOverviewDTO().title()}"></a>
+                            </td>
+                            <td th:text="${rule.ruleOverviewDTO().status()}">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="container" th:switch="${selectedRule}">
+                <form id="details-form" method="post">
+                    <div class="toolbar">
+                        <div class="toolbutton" onclick='document.getElementById("details-form").submit();'>
+                            Save Changes
+                        </div>
+                    </div>
+
+                    <table>
+                        <input name="id" type="hidden" th:value='${selectedRule != null ? selectedRule.id() : ""}'>
+                        <tr>
+                            <th colspan="2">Rule Details</th>
+                        </tr>
+                        <tr>
+                            <td>Title</td>
+                            <td><input name="title" type="text"
+                                       th:value='${selectedRule != null ? selectedRule.ruleOverviewDTO().title() : ""}'>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td><textarea name="description" cols="60" rows="15"
+                                          th:text='${selectedRule != null ? selectedRule.description() : ""}'></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Author</td>
+                            <td>
+                                <select name="user" th:switch="${users}">
+                                    <option hidden="hidden" th:selected='${selectedRule == null || selectedRule.creator() == null ? "selected" : "false"}' value=""></option>
+                                    <option
+                                            th:each="user : ${users}"
+                                            th:value="${user.id()}"
+                                            th:selected='${selectedRule != null && selectedRule.creator() != null && selectedRule.creator().id().equals(user.id()) ? "selected" : "false"}'
+                                            th:text='${user.name + " (" + user.id + ")"}'>
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
