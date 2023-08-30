@@ -2,6 +2,8 @@ package org.sonar.jvm.squad.ruleideascollector.client;
 
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import org.sonar.jvm.squad.ruleideascollector.service.RuleService;
 import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleDTO;
 import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleOverviewDTO;
@@ -84,6 +86,8 @@ public class Controller {
             @RequestParam String description,
             @RequestParam(required = false) String id,
             @RequestParam("user") String userId,
+            @RequestParam String languages,
+            @RequestParam String tags,
             Model model,
             HttpServletResponse response
     ) throws IOException {
@@ -95,7 +99,9 @@ public class Controller {
         RestTemplate rt = new RestTemplate();
         if (id != null && id.isBlank()) id = null;
         UserDTO user = rt.getForEntity("http://localhost:8080/users/" + userId, UserDTO.class).getBody();
-        RuleDTO ruleDTO = new RuleDTO(id, new RuleOverviewDTO(title, null, null, null, null), user, null, LocalDateTime.now(), description, null);
+        var languagesList = Arrays.stream(languages.split(",")).map(String::trim).collect(Collectors.toSet());
+        var tagsArray = Arrays.stream(tags.split(",")).map(String::trim).toArray(String[]::new);
+        RuleDTO ruleDTO = new RuleDTO(id, new RuleOverviewDTO(title, languagesList, tagsArray, null, null), user, null, LocalDateTime.now(), description, null);
         String url = "http://localhost:8080/rules";
         if (id == null) {
             id = rt.postForEntity(url, ruleDTO, String.class).getBody();
