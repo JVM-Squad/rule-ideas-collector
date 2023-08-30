@@ -27,6 +27,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:mongodb:1.19.0")
 	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("io.rest-assured:rest-assured:5.2.0")
+	testImplementation("io.rest-assured:xml-path:5.2.0")
 }
 
 tasks.withType<Test> {
