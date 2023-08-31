@@ -130,4 +130,5 @@ div.toolbutton {
     font-weight: 900;
     background: #f84;
     font-size: 12pt;
+    cursor: pointer;
 }

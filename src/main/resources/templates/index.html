@@ -78,7 +78,7 @@
                             <td>Author</td>
                             <td>
                                 <select name="user" th:switch="${users}">
-                                    <option hidden="hidden" th:selected='${selectedRule == null || selectedRule.creator() == null ? "selected" : "false"}' value=""></option>
+                                    <option th:selected='${selectedRule == null || selectedRule.creator() == null ? "selected" : "false"}' value=""></option>
                                     <option
                                             th:each="user : ${users}"
                                             th:value="${user.id()}"

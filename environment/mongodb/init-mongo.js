@@ -15,9 +15,9 @@ db.createUser(
 db.createCollection('user')
 db.user.insert(
     [
-        { "id": "id_0", "name": "Tyler" },
-        { "id": "id_1", "name": "Angelo" },
-        { "id": "id_2", "name": "Johann" }
+        { "_id": "id_0", "name": "Tyler" },
+        { "_id": "id_1", "name": "Angelo" },
+        { "_id": "id_2", "name": "Johann" }
     ]
 )
 
