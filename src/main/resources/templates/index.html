@@ -74,6 +74,7 @@
                             <td><input name="tags" type="text" th:value='${selectedRule != null ?  #strings.listJoin(selectedRule.ruleOverviewDTO().tags(), ",") : ""}'>
                             </td>
                         </tr>
+                        <!-- TODO: add a preselected STATUS to avoid errors when not selected! -->
                         <tr>
                             <td>Status</td>
                             <td>
@@ -83,11 +84,11 @@
                                             th:value="${status}"
                                             th:selected='${selectedRule != null && selectedRule.ruleOverviewDTO().status() != null && selectedRule.ruleOverviewDTO().status().equals(status) ? "selected" : "false"}'
                                             th:text="${status}">
-
                                     </option>
                                 </select>
                             </td>
                         </tr>
+                        <!-- TODO: add a preselected AUTHOR to avoid errors when not selected! -->
                         <tr>
                             <td>Author</td>
                             <td>

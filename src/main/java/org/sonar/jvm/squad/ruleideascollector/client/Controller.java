@@ -26,13 +26,6 @@ import java.util.List;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-    private RuleService ruleService;
-
-    public Controller(RuleService ruleService) {
-        this.ruleService = ruleService;
-    }
-
-
     @GetMapping("/")
     public String showRuleList(
             @RequestParam(required = false) String ruleId,
