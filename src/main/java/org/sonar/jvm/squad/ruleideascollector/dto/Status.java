@@ -1,4 +1,4 @@
-package org.sonar.jvm.squad.ruleideascollector.persistence.model;
+package org.sonar.jvm.squad.ruleideascollector.dto;
 
 public enum Status {
   PROPOSAL,

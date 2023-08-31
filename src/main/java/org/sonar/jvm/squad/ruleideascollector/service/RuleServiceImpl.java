@@ -5,8 +5,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import org.sonar.jvm.squad.ruleideascollector.persistence.RuleRepository;
 import org.sonar.jvm.squad.ruleideascollector.persistence.UserRepository;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleDTO;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleOverviewDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.RuleDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.RuleOverviewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

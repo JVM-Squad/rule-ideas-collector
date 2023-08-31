@@ -4,11 +4,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import org.sonar.jvm.squad.ruleideascollector.dto.Status;
 import org.sonar.jvm.squad.ruleideascollector.service.RuleService;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleDTO;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleOverviewDTO;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.UserDTO;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.UserResponseDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.RuleDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.RuleOverviewDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.UserDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.UserResponseDTO;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
@@ -88,6 +89,7 @@ public class Controller {
             @RequestParam("user") String userId,
             @RequestParam String languages,
             @RequestParam String tags,
+            @RequestParam Status status,
             Model model,
             HttpServletResponse response
     ) throws IOException {
@@ -101,7 +103,7 @@ public class Controller {
         UserDTO user = rt.getForEntity("http://localhost:8080/users/" + userId, UserDTO.class).getBody();
         var languagesList = Arrays.stream(languages.split(",")).map(String::trim).collect(Collectors.toSet());
         var tagsArray = Arrays.stream(tags.split(",")).map(String::trim).toArray(String[]::new);
-        RuleDTO ruleDTO = new RuleDTO(id, new RuleOverviewDTO(title, languagesList, tagsArray, null, null), user, null, LocalDateTime.now(), description, null);
+        RuleDTO ruleDTO = new RuleDTO(id, new RuleOverviewDTO(title, languagesList, tagsArray, null, status), user, null, LocalDateTime.now(), description, null);
         String url = "http://localhost:8080/rules";
         if (id == null) {
             id = rt.postForEntity(url, ruleDTO, String.class).getBody();

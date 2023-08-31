@@ -75,6 +75,20 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>Status</td>
+                            <td>
+                                <select name="status" th:switch="${T(org.sonar.jvm.squad.ruleideascollector.dto.Status).values()}">
+                                    <option th:selected='${selectedRule == null || selectedRule.ruleOverviewDTO().status() == null ? "selected" : "false"}' value=""></option>
+                                    <option th:each="status : ${T(org.sonar.jvm.squad.ruleideascollector.dto.Status).values()}"
+                                            th:value="${status}"
+                                            th:selected='${selectedRule != null && selectedRule.ruleOverviewDTO().status() != null && selectedRule.ruleOverviewDTO().status().equals(status) ? "selected" : "false"}'
+                                            th:text="${status}">
+
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Author</td>
                             <td>
                                 <select name="user" th:switch="${users}">

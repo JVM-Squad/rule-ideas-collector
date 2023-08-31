@@ -4,10 +4,10 @@ import java.util.Arrays;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.Comment;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.Rule;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.User;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.CommentDTO;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleDTO;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleOverviewDTO;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.UserDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.CommentDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.RuleDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.RuleOverviewDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.UserDTO;
 
 public class MapperUtils {
 

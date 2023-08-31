@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import lombok.Builder;
 import lombok.Data;
+import org.sonar.jvm.squad.ruleideascollector.dto.Status;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

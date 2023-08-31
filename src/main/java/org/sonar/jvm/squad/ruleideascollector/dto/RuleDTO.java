@@ -1,4 +1,4 @@
-package org.sonar.jvm.squad.ruleideascollector.service.dto;
+package org.sonar.jvm.squad.ruleideascollector.dto;
 
 import java.util.Arrays;
 import java.util.Objects;

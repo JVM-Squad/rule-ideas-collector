@@ -1,10 +1,9 @@
-package org.sonar.jvm.squad.ruleideascollector.service.dto;
+package org.sonar.jvm.squad.ruleideascollector.dto;
 
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 import lombok.Builder;
-import org.sonar.jvm.squad.ruleideascollector.persistence.model.Status;
 
 @Builder
 public record RuleOverviewDTO(

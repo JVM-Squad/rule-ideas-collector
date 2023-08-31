@@ -2,7 +2,7 @@ package org.sonar.jvm.squad.ruleideascollector.persistence;
 
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.User;
 import org.sonar.jvm.squad.ruleideascollector.service.MapperUtils;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.UserDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.UserDTO;
 import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

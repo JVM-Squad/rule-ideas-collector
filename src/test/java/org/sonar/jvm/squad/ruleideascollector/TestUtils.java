@@ -3,11 +3,11 @@ package org.sonar.jvm.squad.ruleideascollector;
 import java.util.Set;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.Comment;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.Rule;
-import org.sonar.jvm.squad.ruleideascollector.persistence.model.Status;
+import org.sonar.jvm.squad.ruleideascollector.dto.Status;
 import org.sonar.jvm.squad.ruleideascollector.persistence.model.User;
 import org.sonar.jvm.squad.ruleideascollector.service.MapperUtils;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.RuleDTO;
-import org.sonar.jvm.squad.ruleideascollector.service.dto.UserDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.RuleDTO;
+import org.sonar.jvm.squad.ruleideascollector.dto.UserDTO;
 
 public class TestUtils {
 
